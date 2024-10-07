@@ -1,0 +1,31 @@
+services:
+  php-8.3:
+    image: php:8.3-apache
+    container_name: php-8.3
+    ports:
+      - "81:80"
+      - "8000:8000"
+    command: >
+      sh -c "
+        apt-get update
+        apt-get install -y libcurl4-openssl-dev
+        a2enmod headers
+        a2enmod rewrite
+        docker-php-ext-install curl
+        cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+        sed -i 's/memory_limit = .*/memory_limit = -1/' /usr/local/etc/php/php.ini
+        sed -i '1i\ServerName localhost:81' /etc/apache2/apache2.conf
+        apache2-foreground
+      "
+    volumes:
+      - ../src:/var/www/html
+  composer-2:
+    image: composer:2
+    container_name: composer-2
+    volumes:
+      - ../:/app
+      - ../.composer:/root/.composer
+    command: >
+      sh -c "
+        tail -f /dev/null
+      "
