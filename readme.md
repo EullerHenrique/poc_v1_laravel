@@ -16,6 +16,9 @@
 3.1 php artisan serve --host 0.0.0.0 port=8000
 4. npm install
 4.1 npm run build 
+5.1 docker exec -it php-8.3 bash 
+5.2 php artisan make:migration create_series_table
+5.3 php artisan migrate
 
 ## Execução
 

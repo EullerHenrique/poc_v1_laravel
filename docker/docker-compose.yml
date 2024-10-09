@@ -11,7 +11,8 @@ services:
         apt-get install -y libcurl4-openssl-dev
         a2enmod headers
         a2enmod rewrite
-        docker-php-ext-install curl
+        docker-php-ext-install curl mysqli pdo pdo_mysql
+        docker-php-ext-enable pdo_mysql
         cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
         sed -i 's/memory_limit = .*/memory_limit = -1/' /usr/local/etc/php/php.ini
         sed -i '1i\ServerName localhost:81' /etc/apache2/apache2.conf
