@@ -1,4 +1,4 @@
-# Poc Laravel e Php Moderno
+# Poc Laravel
 
 # Tecnologias Utilizadas
 
