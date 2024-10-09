@@ -1,18 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Serie;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class SeriesController extends Controller
 {
     public function index(Request $request)
     {
-        $series = [
-            'Grey\'s Anatomy',
-            'Lost',
-            'Agents of SHIELD'
-        ];
+        $series = Serie::query()->orderBy('name')->get();
         return view(   'series.index')->with('series', $series);
     }
 
@@ -23,12 +19,12 @@ class SeriesController extends Controller
 
     public function store(Request $request)
     {
-        $nomeSerie = $request->input('nome');
-        
-        if(DB::insert('insert into series (nome) values (?)', [$nomeSerie])){
-            return "ok";
-        }else{
-            return "erro";
-        }
+        $nomeSerie = $request->input('name');
+
+        $serie = new Serie();
+        $serie->name = $nomeSerie;
+        $serie->save();
+    
+        return redirect('/series');   
     }
 }

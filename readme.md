@@ -13,12 +13,16 @@
 2.3. composer config -g github-protocols https ssh
 2.4. composer create-project --prefer-dist laravel/laravel:11.0 src
 3. docker exec -it php-8.3 bash 
-3.1 php artisan serve --host 0.0.0.0 port=8000
+3.1 php artisan serve --host 0.0.0.0
 4. npm install
 4.1 npm run build 
 5.1 docker exec -it php-8.3 bash 
-5.2 php artisan make:migration create_series_table
-5.3 php artisan migrate
+5.2 php artisan make:controller SeriesController
+6.1 docker exec -it php-8.3 bash 
+6.2 php artisan make:migration create_series_table
+6.3 php artisan migrate
+7.1 docker exec -it php-8.3 bash
+7.2 php artisan make:model Serie
 
 ## Execução
 
