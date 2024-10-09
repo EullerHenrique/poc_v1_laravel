@@ -1,5 +1,5 @@
 <x-layout title="Nova Série">
-    <form method="post">
+    <form action="/series/salvar" method="post">
         <div class="mb-3">
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="nome" class="form-control">
