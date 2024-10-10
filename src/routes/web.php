@@ -7,7 +7,7 @@ Route::get('/', function () {
     return redirect('/series');
 });
 
-#Route::resource('series', SeriesController::class)->only(['index', 'create', 'store', 'destroy', 'edit', 'update']);
+#Route::resource('series', SeriesController::class)->only(['index', 'create', 'store', 'destroy', 'edit', 'update'])->except(['show']);;
 
 Route::controller(SeriesController::class)->group(function(){
     Route::get('/series',  'index')->name('series.index');

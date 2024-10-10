@@ -25,6 +25,16 @@
     2. php artisan migrate
 7. docker exec -it php-8.3 bash
     1. php artisan make:model Serie
+8. docker exec -it php-8.3 bash
+    1. php artisas make:request SeriesFormRequest 
+9. docker exec -it php-8.3 bash
+    1. php artisan lang:publish
+10. docker exec -it composer-2 bash
+    1. cd src
+    2. composer require lucascudo/laravel-pt-br-localization --dev
+11. docker exec -it php-8.3 bash 
+    php artisan vendor:publish --tag=laravel-pt-br-localization
+
 
 ## Execução
 
