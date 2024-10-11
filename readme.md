@@ -40,6 +40,8 @@
     1. php artisan make:model Episode -m
 14. docker exec -it php-8.3 bash
     1. php artisan migrate
+15. docker exec -it php-8.3 bash
+    1. php artisan migrate:fresh
 
 
 

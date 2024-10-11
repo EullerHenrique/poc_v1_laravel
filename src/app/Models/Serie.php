@@ -12,7 +12,7 @@ class Serie extends Model
 
     #Um série tem muitas temporadas
     #Faz lazy loading, para acessar as temporadas de uma série, basta chamar Series::with('temporadas')->get()
-    public function temporadas()
+    public function seasons()
     {
         return $this->hasMany(Season::class);
     }
