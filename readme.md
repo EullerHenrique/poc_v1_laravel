@@ -34,6 +34,13 @@
     2. composer require lucascudo/laravel-pt-br-localization --dev
 11. docker exec -it php-8.3 bash 
     php artisan vendor:publish --tag=laravel-pt-br-localization
+12. docker exec -it php-8.3 bash 
+    1. php artisan make:model Season -m
+13. docker exec -it php-8.3 bash 
+    1. php artisan make:model Episode -m
+14. docker exec -it php-8.3 bash
+    1. php artisan migrate
+
 
 
 ## Execução

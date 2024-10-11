@@ -4,8 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Serie extends Model
 {
     use HasFactory;
+
+    #Um série tem muitas temporadas
+    #Faz lazy loading, para acessar as temporadas de uma série, basta chamar Series::with('temporadas')->get()
+    public function temporadas()
+    {
+        return $this->hasMany(Season::class);
+    }
+
+    protected static function booted()
+    {
+       self::addGlobalScope('ordered', function (Builder $builder) {
+           $builder->orderBy('name');
+       });
+    }
 }
