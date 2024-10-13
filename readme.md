@@ -42,7 +42,12 @@
     1. php artisan migrate
 15. docker exec -it php-8.3 bash
     1. php artisan migrate:fresh
-
+16. docker exec -it php-8.3 bash
+    1. php artisan make:controller SeasonsController
+17. docker exec -it composer-2 bash
+    1. cd src
+    2. composer require barryvdh/laravel-debugbar --dev
+    3. Caso queira publicar: php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 
 
 ## Execução
