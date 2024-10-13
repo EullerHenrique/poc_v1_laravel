@@ -6,6 +6,7 @@ use App\Models\Episode;
 use Illuminate\Http\Request;
 use App\Http\Requests\SeriesFormRequest;
 use App\Models\Season;
+use Illuminate\Support\Facades\DB;
 
 class SeriesController extends Controller
 {
@@ -25,37 +26,46 @@ class SeriesController extends Controller
 
     public function store(SeriesFormRequest $request)
     {
-        $nomeSerie = $request->name;
+        #DB:transacion() -> União dos comandos abaixo
+        #DB:beginTransaction()
+        #DB::commit()
+        #DB::rollBack()
+        $serie = DB::transaction(function () use ($request) {
+            #Opção 1
+            #$serie = new Serie();
+            #$serie->name = $request->name;
+            #$serie->save();
 
-        #Serie::create(['name' => $nomeSerie]); //Adicionar fillable no model
-        #Series::create($request->all()); //Adicionar fillable no model
+            #Opção 2 (Precisa adicionar fillable no model)
+            $serie = Serie::create(['name' => $request->name]);
 
-        $serie = new Serie();
-        $serie->name = $nomeSerie;
-        $serie->save();
+            #Opção 3 (Todos os campos do request precisam estar no fillable do model)
+            #$serie = Serie::create($request->all());
 
-        $seasons = [];
-        for ($i = 1; $i <= $request->seasonsQty; $i++) {
-            $seasons[] = [
-                'serie_id' => $serie->id,
-                'number' => $i,
-            ];
-        }
-        Season::insert($seasons);
-
-        $episodes = [];
-        foreach ($serie->seasons as $season) {
-            for ($j = 1; $j <= $request->episodesPerSeason; $j++) {
-                $episodes[] = [
-                    'season_id' => $season->id,
-                    'number' => $j
+            $seasons = [];
+            for ($i = 1; $i <= $request->seasonsQty; $i++) {
+                $seasons[] = [
+                    'serie_id' => $serie->id,
+                    'number' => $i,
                 ];
             }
-        }
-        Episode::insert($episodes);
-    
+            Season::insert($seasons);
+
+            $episodes = [];
+            foreach ($serie->seasons as $season) {
+                for ($j = 1; $j <= $request->episodesPerSeason; $j++) {
+                    $episodes[] = [
+                        'season_id' => $season->id,
+                        'number' => $j
+                    ];
+                }
+            }
+            Episode::insert($episodes);
+            return $serie;
+        });
+       
         return to_route('series.index')
-        ->with('mensagem.sucesso', 'Série adicionada com sucesso');
+        ->with('mensagem.sucesso', "Série '{$serie->name}' adicionada com sucesso");
     }
 
     public function destroy(Request $request)

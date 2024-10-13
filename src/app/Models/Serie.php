@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Builder;
 class Serie extends Model
 {
     use HasFactory;
+    
+    protected $fillable = ['name'];
 
     #Um série tem muitas temporadas
-    #Faz lazy loading, para acessar as temporadas de uma série, basta chamar Series::with('temporadas')->get()
+    #Faz lazy loading por padrão, para acessar as temporadas de uma série, basta chamar Series::with('temporadas')->get()
     public function seasons()
     {
         return $this->hasMany(Season::class);
