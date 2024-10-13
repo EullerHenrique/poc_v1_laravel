@@ -6,6 +6,7 @@
 - Php 8.3
 - MySql 9
 - Docker
+- Composer 2
 
 # Inicialização
 
