@@ -1,10 +1,4 @@
-<x-layout title="Séries">
-
-    @isset($mensagemSucesso)
-    <div class="alert alert-success">
-        {{ $mensagemSucesso }}
-    </div>
-    @endisset
+<x-layout title="Séries" :mensagem-sucesso="$mensagemSucesso">
 
     <a href="{{ route('series.create') }}" class="btn btn-dark mb-2">Adicionar</a>
     <ul class="list-group">

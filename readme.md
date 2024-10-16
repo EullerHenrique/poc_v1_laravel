@@ -51,6 +51,9 @@
     3. Caso queira publicar: php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 18. docker exec -it php-8.3 bash
     1. php artisan make:provider SeriesRepositoryProvider
+19. docker exec -it php-8.3 bash
+    1. php artisan make:migration --table=episodes add_watched_episode
+    2. php artisan migrate
 
 
 ## Execução

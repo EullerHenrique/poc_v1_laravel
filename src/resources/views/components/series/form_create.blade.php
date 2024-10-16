@@ -1,6 +1,5 @@
 <form action="{{ $action }}" method="post">
     @csrf
-
     <div class="row mb-3">
         <div class="col-8">
             <label for="name" class="form-label">Nome:</label>
