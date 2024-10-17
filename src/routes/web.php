@@ -3,12 +3,13 @@
 use App\Http\Controllers\SeasonsController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\EpisodesController;
+use App\Http\Controllers\LoginController;
+use App\Http\Middleware\Autenticador;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return redirect('/series');
-});
+})->middleware(Autenticador::class);
 
 #Route::resource('series', SeriesController::class)->only(['index', 'create', 'store', 'destroy', 'edit', 'update'])->except(['show']);;
 
@@ -26,3 +27,6 @@ Route::get('/series/{id}/seasons', [SeasonsController::class, 'index'])->name('s
 Route::get('/seasons/{id}/episodes', [EpisodesController::class, 'index'])->name('episodes.index');
 
 Route::post('/seasons/{id}/episodes', [EpisodesController::class, 'update'])->name('episodes.update');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store']);

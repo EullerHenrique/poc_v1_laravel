@@ -54,7 +54,8 @@
 19. docker exec -it php-8.3 bash
     1. php artisan make:migration --table=episodes add_watched_episode
     2. php artisan migrate
-
+20. docker exec -it php-8.3 bash
+    1. php artisan make:middleware Autenticador
 
 ## Execução
 
