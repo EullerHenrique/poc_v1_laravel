@@ -6,6 +6,10 @@
     <title> {{$title}} </title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ route('series.index') }}">Séries</a>
+    <a class="navbar-brand" href="{{ route('logout') }}">Sair</a>
+</nav>
 <body>
     <div class="container">
         <h1>{{$title}}</h1>
