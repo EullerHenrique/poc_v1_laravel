@@ -8,7 +8,12 @@
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="{{ route('series.index') }}">Séries</a>
+    @auth
     <a class="navbar-brand" href="{{ route('logout') }}">Sair</a>
+    @endauth
+    @guest
+    <a class="navbar-brand" href="{{ route('login') }}">Entrar</a>
+    @endguest
 </nav>
 <body>
     <div class="container">
