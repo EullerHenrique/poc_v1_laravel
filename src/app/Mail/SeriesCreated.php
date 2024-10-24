@@ -13,12 +13,20 @@ class SeriesCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public string $nomeSerie;
+    public int $serieId;
+    public int $qtdTemporadas;
+    public int $episodiosPorTemporada;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(string $nomeSerie, int $serieId, int $qtdTemporadas, int $episodiosPorTemporada)
     {
-        //
+        $this->nomeSerie = $nomeSerie;
+        $this->serieId = $serieId;
+        $this->qtdTemporadas = $qtdTemporadas;
+        $this->episodiosPorTemporada = $episodiosPorTemporada;
     }
 
     /**
@@ -37,7 +45,7 @@ class SeriesCreated extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'email.series-created'
         );
     }
 
