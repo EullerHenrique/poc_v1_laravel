@@ -58,6 +58,16 @@
     1. php artisan make:middleware Autenticador
 21. docker exec -it php-8.3 bash
     1. php artisan make:mail SeriesCreated
+22. docker exec -it php-8.3 bash
+    1. php artisan queue:table
+    2. php artisan migrate
+    3. php artisan tinker
+    4. DB::select('select * from jobs;');
+    5. php artisan queue:work
+    6. php artisan tinker
+    7. DB::select('select * from failed_jobs;');
+    8. php artisan queue:retry "all"
+    9. php artisan queue:work --tries=2 --delay=10
 
 ## Execução
 
