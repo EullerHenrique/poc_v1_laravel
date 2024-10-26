@@ -8,6 +8,7 @@ use App\Mail\SeriesCreated;
 use App\Repositories\SeriesRepository;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use App\Events\SeriesCreated as SeriesCreatedEvent;
 
 class SeriesController extends Controller
 {
@@ -32,20 +33,8 @@ class SeriesController extends Controller
     public function store(SeriesFormRequest $request)
     {
         $serie = $this->seriesRepository->add($request);
-        
-        $userList = User::all();
-        foreach ($userList as $index => $user) {
-            $email = new SeriesCreated(
-                $serie->name,
-                $serie->id,
-                $request->seasonsQty,
-                $request->episodesPerSeason
-            );
-            #$when = now()->addSeconds($index * 5);
-            #Mail::to($user)->later($when, $email);
-            Mail::to($user)->queue($email);
-        }
-   
+        SeriesCreatedEvent::dispatch($serie->name, $serie->id, $request->seasonsQty, $request->episodesPerSeason);
+        #event(new SeriesCreated($serie->name, $serie->id, $serie->seasons_qty, $serie->episodes_per_season));
         return to_route('series.index')
         ->with('mensagem.sucesso', "Série '{$serie->name}' adicionada com sucesso");
     }

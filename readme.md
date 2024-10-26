@@ -68,6 +68,11 @@
     7. DB::select('select * from failed_jobs;');
     8. php artisan queue:retry "all"
     9. php artisan queue:work --tries=2 --delay=10
+23. docker exec -it php-8.3 bash
+    1. php artisan queue:listen --tries=2
+    2. php artisan make:listener EmailUsersAboutSeriesCreated
+    3. php artisan make:event SeriesCreated
+    4. php artisan make:listener LogSeriesCreated -e SeriesCreated
 
 ## Execução
 
