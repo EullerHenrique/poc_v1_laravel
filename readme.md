@@ -73,6 +73,10 @@
     2. php artisan make:listener EmailUsersAboutSeriesCreated
     3. php artisan make:event SeriesCreated
     4. php artisan make:listener LogSeriesCreated -e SeriesCreated
+24. docker exec -it php-8.3 bash
+    1. php artisan make:migration --table=series add_cover_column
+    2. php artisan migrate
+    3. php artisan storage:link
 
 ## Execução
 

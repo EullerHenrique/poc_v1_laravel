@@ -10,7 +10,7 @@ class Serie extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'cover'];
 
     #Um série tem muitas temporadas
     #Faz lazy loading por padrão, para acessar as temporadas de uma série, basta chamar Series::with('temporadas')->get()

@@ -22,7 +22,11 @@ class EloquentSeriesRepository implements SeriesRepository
         #$serie->save();
 
         #Opção 2 (Precisa adicionar fillable no model)
-        $serie = Serie::create(['name' => $request->name]);
+        $serie = Serie::create([
+            'name' => $request->name,
+            'cover' => $request->coverPath
+            
+        ]);
 
         #Opção 3 (Todos os campos do request precisam estar no fillable do model)
         #$serie = Serie::create($request->all());
