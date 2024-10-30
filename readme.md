@@ -77,6 +77,9 @@
     1. php artisan make:migration --table=series add_cover_column
     2. php artisan migrate
     3. php artisan storage:link
+25. docker exec -it php-8.3 bash
+    1. php artisan test
+    2. php artisan make:test SeriesRepositoryTest
 
 ## Execução
 
