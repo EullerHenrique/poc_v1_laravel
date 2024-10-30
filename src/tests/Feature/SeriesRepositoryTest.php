@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Http\Requests\SeriesFormRequest;
 
+
 class SeriesRepositoryTest extends TestCase
 {
     use RefreshDatabase;
