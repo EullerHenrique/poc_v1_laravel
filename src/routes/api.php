@@ -19,4 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/series', [SeriesController::class, 'index']);
+//Route::apiResource é equivalente a Route::resource(...)->except([‘create’, ‘edit’]);.
+Route::apiResource('/series', SeriesController::class);
+#Route::get('/series', [SeriesController::class, 'index']);
+#Route::post('/series', [SeriesController::class, 'store']);

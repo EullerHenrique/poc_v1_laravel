@@ -80,6 +80,8 @@
 25. docker exec -it php-8.3 bash
     1. php artisan test
     2. php artisan make:test SeriesRepositoryTest
+26. docker exec -it php-8.3 bash
+    1. php artisan route:list
 
 ## Execução
 
@@ -95,3 +97,34 @@
         1. php artisan migrate
         2. php artisan serve --host 0.0.0.0
 
+## Endpoints
+
+1. http://127.0.0.1:8000/api/series [POST]
+REQUEST: 
+{
+    "name": "Lost",
+    "seasonsQty": 8,
+    "episodesPerSeason": 3
+}
+RESPONSE:
+{
+    "name": "Lost",
+    "cover": null,
+    "updated_at": "2024-10-31T02:56:26.000000Z",
+    "created_at": "2024-10-31T02:56:26.000000Z",
+    "id": 22,
+    "seasons": [
+        {
+            "id": 194,
+            "number": 1,
+            "serie_id": 22,
+            "created_at": null,
+            "updated_at": null
+        },
+    ]
+}
+    
+2. http://127.0.0.1:8000/api/series/{id} [GET]
+
+RESPONSE:
+    
